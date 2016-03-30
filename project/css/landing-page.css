@@ -36,8 +36,10 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    /*background: url(../img/road_network.png) no-repeat center center;*/
-    background-size: height="500", width="100%";
+    background-image: url("https://farm6.staticflickr.com/5508/12294365584_75c43ecef4_k.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     background-color: #D1D0CE
 }
 
