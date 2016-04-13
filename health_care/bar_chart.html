@@ -70,7 +70,7 @@ function createVisualization() {
   var svg = d3.select("body")
     .append("svg")
     .attr("width", w + margin.left + margin.right)
-    .attr("height", h + margin.bottom)
+    .attr("height", h + margin.bottom +50)
     .append("g")
     .attr("transform", "translate(" + margin.left + ",10)");
 
@@ -176,7 +176,8 @@ function createVisualization() {
         .attr("stroke", "black");
       // Define and draw axes
       var x = d3.scale.ordinal()
-          .rangeRoundBands([0, w], .1);
+          .domain(dataset[0].map(function(d) { return d.x; }))
+          .rangeRoundBands([15, w-110], 0.02);
 
       var yAxis = d3.svg.axis()
         .scale(yScale)
@@ -186,6 +187,8 @@ function createVisualization() {
 
       var xAxis = d3.svg.axis()
         .scale(x)
+        .ticks(14)
+        .tickFormat( function(d) { return d } )
         .orient("bottom");
 
       svg.append("g")
@@ -195,17 +198,12 @@ function createVisualization() {
         .attr("class", "x axis")
         .attr("transform", "translate(0," + h + ")")
         .call(xAxis)
-      .selectAll("text")
-        .attr("y", 0)
-        .attr("x", 9)
-        .attr("dy", ".35em")
-        .attr("transform", function(d) { return "translate(" + x(d.county) + ",0)"; })
-        .style("text-anchor", "start");
-      // var county = svg.selectAll(".county")
-      // .data(healthData)
-      // .enter().append("g")
-      // .attr("class", "g")
-      // .attr("transform", function(d) { return "translate(" + x(d.county) + ",0)"; });
+          .selectAll("text")
+          .style("text-anchor", "end")
+           .attr("dx", "-.8em")
+           .attr("dy", ".15em")
+           .attr("transform", "rotate(-90)");
+        
 }
 </script>
 </div>
