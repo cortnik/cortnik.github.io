@@ -6,13 +6,15 @@
     <script src="roads.geojson"></script>
     <script src="districts.geojson"></script>
     <script src="route_PNO_12pm.geojson"></script>
+<!--     <script src="merged_PND_routes.geojson"></script> -->
+    <script src="merged_PNO_routes.geojson"></script>
     <style>
     body {
     position: absolute;
     font-family: "Proxima Nova", "Montserrat", sans-serif;
     }
     body {
-    	background-color: #040404;
+    	background-color: #636363;
     }
     h1, h2 {
         position: absolute;
@@ -28,17 +30,28 @@
     .hover {
         fill: yellow;   
     }
+    #sliderContainer {
+    text-align: center;
+    position: relative;
+    top: 600px;
     </style>
 </head>
 <body>
     <h1>Testing Ground for Path Slider</h1>
     <h2>Useless information on the internets</h2>
-
+    <div id="sliderContainer">
+    <input id="timeslide" type="range" min="0" max="2" value="0" step="1"/><br>
+    <span id="range">09:00</span>
+</div>
 </div>
     <script>
 	// Width and Height of the whole visualization
 	var width = 800;
 	var height = 800;
+
+    var inputValue = null;
+    
+    var time = ["9", "12", "18"];
 
 	// Create SVG
 	var svg = d3.select( "body" )
@@ -95,19 +108,71 @@
         .attr( "stroke", "#eff3f6" )
         .attr( "d", geoPath )
         .attr("class", "roads")
+    
+    //add time slice for PNO 12pm
+     // var PNO_12pm = svg.append ("g")
 
-     var PNO_12pm = svg.append ("g")
+    	// PNO_12pm.selectAll( "path" )
+     //    .data( routes_PNO_12pm.features )
+     //    .enter()
+     //    .append( "path" )
+     //    .attr("fill", "none")
+     //    .attr( "stroke", "#49d2cf" )
+     //    .attr("stroke-width", "3px")
+     //    .attr( "d", geoPath )
+     //    .attr("class", "PNO_12pm")
 
-    	PNO_12pm.selectAll( "path" )
-        .data( routes_PNO_12pm.features )
+     var PNO_routes = svg.append ("g")
+
+    PNO_routes.selectAll( "path" )
+        .data( PNO_merge.features )
         .enter()
         .append( "path" )
         .attr("fill", "none")
         .attr( "stroke", "#49d2cf" )
         .attr("stroke-width", "3px")
         .attr( "d", geoPath )
-        .attr("class", "PNO_12pm")
+        .attr("class", "PNO_merge")
+        .on("mouseover", function(d){
+        d3.select("h2").text(d.properties.Hour);
+        d3.select(this).attr("class","PNO_merge hover");
+        })
+        .on("mouseout", function(d){
+        d3.select("h2").text("");
+        d3.select(this).attr("class","PNO_merge");
+        });
+        // when the input range changes update the value 
+        d3.select("#timeslide").on("input", function() {
+            update(+this.value);
+        });
 
+        // update the stroke of each SVG of class "incident" with value
+        function update(value) {
+            document.getElementById("range").innerHTML=time[value];
+            inputValue = time[value];
+            d3.selectAll(".PNO_merge")
+                .attr("stroke", timeMatch);
+        }
+        function timeMatch(data, value) {
+            var d = new Date(data.properties.Hour);
+            var m = time[d.getHours()];
+            if (inputValue == m) {
+                this.parentElement.appendChild(this);
+                return "red";
+            } else {
+                return "#999";
+            };
+}
+        function initialDate(d,i){
+                var d = new Date(d.properties.Hour);
+                var m = time[d.getHours()];
+                if (m == "9") {
+                    this.parentElement.appendChild(this);
+                    return "red";
+                } else {
+                    return "#999";
+        };
+        }
     </script>
 </body>
 </html>
