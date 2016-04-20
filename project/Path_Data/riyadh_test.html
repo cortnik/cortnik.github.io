@@ -6,6 +6,7 @@
     <script src="roads.geojson"></script>
     <script src="districts.geojson"></script>
     <script src="route_PNO_12pm.geojson"></script>
+    <script src="PNO_910.geojson"></script>
 <!--     <script src="merged_PND_routes.geojson"></script> -->
     <script src="merged_PNO_routes.geojson"></script>
     <style>
@@ -134,6 +135,27 @@
             update(+this.value);
         });
 
+		// PNO_routes.selectAll( "path" )
+		//         .data( PNO_9.features )
+		//         .enter()
+		//         .append( "path" )
+		//         .attr("fill", "none")
+		//         .attr( "stroke", "#c51b8a" )
+		//         .attr("stroke-width", "3px")
+		//         .attr( "d", geoPath )
+		//         .attr("class", "PNO_merge")
+		//         .on("mouseover", function(d){
+		//         d3.select("h2").text(d.properties.Hour);
+		//         d3.select(this).attr("class","PNO_merge hover");
+		//         })
+		//         .on("mouseout", function(d){
+		//         d3.select("h2").text("");
+		//         d3.select(this).attr("class","PNO_merge");
+		//         });
+		//         // when the input range changes update the value 
+		//         d3.select("#timeslide").on("input", function() {
+		//             update(+this.value);
+		//         });
         // update the stroke of each SVG of class "incident" with value
         function update(value) {
             document.getElementById("range").innerHTML=time[value];
