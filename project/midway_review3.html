@@ -127,15 +127,12 @@
             .append( "path" )
             .attr("fill", "none")
             .attr( "stroke", "#2afd16")
-            .attr("stroke-width",function(d) { 
-                d.flow = +d.flow;
-                return d.flow;
-                console.log(d.flow); })
+            .attr("stroke-width",function(d) {return d.flow;})
             .attr( "d", geoPath )
-            .attr("class", "PNO_merge")
+            .attr("class", "PNO_9")
             .on("mouseover", function(d){
-            d3.select("h2").text("Helpful Information Will Pop Up Here: " + d.properties.Hour);
-            d3.select(this).attr("class","PNO_merge hover");
+            d3.select("h2").text("Helpful Information Will Pop Up Here: " + d.flow);
+            d3.select(this).attr("class","PNO_9 hover");
             })
             .on("mouseout", function(d){
             d3.select("h2").text("");
