@@ -127,7 +127,7 @@
             .append( "path" )
             .attr("fill", "none")
             .attr( "stroke", "#2afd16")
-            .attr("stroke-width",function(d) { return Number(d.flow); })
+            .attr("stroke-width",function(d) { return parseFloat(d.flow); })
             .attr( "d", geoPath )
             .attr("class", "PNO_merge")
             .on("mouseover", function(d){
