@@ -122,12 +122,12 @@
      var PNO_routes = svg.append ("g")
 
         PNO_routes.selectAll( "path" )
-            .data( PNO_9.features )
+            .data( PNO_9.features)
             .enter()
             .append( "path" )
             .attr("fill", "none")
             .attr( "stroke", "#2afd16")
-            .attr("stroke-width", })
+            .attr("stroke-width",function(d) { return number(d.flow); })
             .attr( "d", geoPath )
             .attr("class", "PNO_merge")
             .on("mouseover", function(d){
