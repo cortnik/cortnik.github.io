@@ -83,6 +83,7 @@
     var geoPath = d3.geo.path()
         .projection( projectionMerc);
 
+
     // Classic D3... Select non-existent elements, bind the data, append the elements, and apply attributes
     // g.selectAll( "path" )
     //     .data( districts.features )
@@ -126,7 +127,7 @@
             .append( "path" )
             .attr("fill", "none")
             .attr( "stroke", "#2afd16")
-            .attr("stroke-width", function(d) {return d.properties.flow;})
+            .attr("stroke-width", })
             .attr( "d", geoPath )
             .attr("class", "PNO_merge")
             .on("mouseover", function(d){
