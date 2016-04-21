@@ -127,7 +127,7 @@
             .append( "path" )
             .attr("fill", "none")
             .attr( "stroke", "#2afd16")
-            .attr("stroke-width", function(d) {return Number(d.target.flow);})
+            .attr("stroke-width", function(d) {return d.LANES;})
             .attr( "d", geoPath )
             .attr("class", "PNO_9")
             .on("mouseover", function(d){
