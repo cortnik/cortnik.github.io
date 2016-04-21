@@ -201,33 +201,48 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">INITIAL VISUALIZATIONS</h2>
-                    <p class="lead">At this point we've taken CDR data and found the cell phone towers within .005 degrees of the Princess Noura University campus<br>
-                    <br>These networkx graph are our first attempts at visualizing the flow data to & from those towers, at between 12noon-1pm. We've also started visualizing shortest path distances from the university and destinations/origins around the city. A sample path visualization is online <a href="/project/path_data/riyadh_test.html">here.</a></p>
+                    <h2 class="section-heading">MIDWAY REVIEW STATUS UPDATE</h2>
+                    <p class="lead">At this point we've completed phase one of our methodology. In the process of analyzing the OD matrix, we made the executive decision to adjust the next phases. Rather than incorporating Twitter data, we will be focusing solely on the OD matrix data.<br>
+                    <br>First, we utilizied networkx to visualize the flow data to & from the cell phone towers within .005 degrees of the Princess Nourah campus.<br>
+                    Then, we developed a <a href="midway_review1.html">hot spot map</a>, based on origin flow and calculated <a href="midway_review2.html">shortest paths</a> between the University and origin/destinations, using <a href="midway_review3">networkx</a> and ArcMap.</p>
                 </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                </div> 
+                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <br>
+                    <br>
+                    <a href="midway_review1.html" target="blank"><img src="img/slider_hotspot.png" alt="" height="80%" width="80%"></a>
+                </div>
             </div>
 
- <div class="content-section-a">
+   <div class="content-section-b">
 
         <div class="container">
 
             <div class="row">
-                <div class="col-lg-5 col-sm-6">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">12NOON- 1PM: FLOW FROM UNIVERSITY</h2>
-                    <p class="lead"> </p>
+                    <h2 class="section-heading">OUTPUT & CHALLENGES</h2>
+                    <p class="lead"><b>Output:</b><br>
+                    <li>Code & geojsons of aggregated hourly CDR flow to and from the Princess Noura University: Hotspots & Shortest Route between O-D</li> 
+                    <li>Slider map with hotspots for the University as the origin, 9am, 12pm and 6pm</li>
+                    <li>Slider map showing CDR flow along shortest routes between O-D for University as the origin, 9am, 12pm and 6pm</li>
+                    <br>
+                    <p class="lead"><b>Challenges:</b>
+                    <li>Initial data display when the website is opened</li>
+                    <li>Smoother transitions</li>
+                    <li>Legibility of information — Need to add in some landmarks in basemap</li>
+                    <li>While aggregated flow along shortest paths looks generally reasonable (e.g. higher flows aggregating towards the university), there are some unexpected results. Need to cross-check analysis</li>
+                    </p>
                 </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/PNU_Origin.png" alt="" height="100%" width="100%">
-                </div> 
+                <div class="col-lg-5 col-sm-pull-6 col-sm-6">
+                    <br>
+                    <br>
+                    <img src="img/slider_paths.png" alt="" height="80%" width="80%">
+                </div>
             </div>
 
         </div>
         <!-- /.container -->
-
  <div class="content-section-a">
 
         <div class="container">
@@ -236,16 +251,28 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">12NOON- 1PM: FLOW TO UNIVERSITY</h2>
-                    <p class="lead"> </p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/PNU_destination.png" alt="" height="100%" width="100%">
-                </div> 
-            </div>
+                    <h2 class="section-heading">MOVING FORWARD</h2>
+                    <p class="lead"><b>Expected Deliverables:</b>
+                    <li>Two hotspot maps side by side — origin & destination ( controlled by the same slider)</li>
+                    <li>An option to overlay the metro network over the hotspots</li>
+                    <li>An option to overlay the flow path analysis as well </li>
+                    <li>Include units of analysis (e.g. to clearly represent how many people the bubbles/ thickness of flow lines represent)</li>
+                    <br>
+                    <p class="lead"><b>Revised Work Plan:</b>
+                    <li>Complete slider maps with all hours (both for PNUniversity as Origin and as Destination)  — 28th April</li> 
+                    <li>Analysis of potential ‘gaps’ in the proposed metro network— 5th May</li>
+                    <li>Complete overall visualization stylization, interaction and animation function —12 May</li> 
 
-        </div>
-    </div>
+
+                    </p>
+                </div>
+                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <br>
+                    <br>
+                    <br>
+                    <img src="img/Riyadh_Logo_white.png" alt="" align="center" height="250" width="250">
+                </div>
+            </div>
 </div>
 	
     <!-- <div class="banner">

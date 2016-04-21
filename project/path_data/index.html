@@ -1,0 +1,188 @@
+
+<html>
+<head>
+    <title>A Basic D3 map</title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="roads.geojson"></script>
+    <script src="districts.geojson"></script>
+    <script src="route_PNO_12pm.geojson"></script>
+    <script src="PNO_910.geojson"></script>
+<!--     <script src="merged_PND_routes.geojson"></script> -->
+    <script src="merged_PNO_routes.geojson"></script>
+    <style>
+    body {
+    position: absolute;
+    font-family: "Proxima Nova", "Montserrat", sans-serif;
+    }
+    body {
+    	background-color: #636363;
+    }
+    h1, h2 {
+        position: absolute;
+        left: 10px;
+        font-size: 1.3em;
+        font-weight: 100;
+        color: #eff3f6; 
+    }
+    h2 {
+        top: 30px;
+        font-size: 1em;
+    }
+    .hover {
+        fill: yellow;   
+    }
+    #sliderContainer {
+    text-align: center;
+    position: relative;
+    top: 600px;
+    </style>
+</head>
+<body>
+    <h1>Testing Ground for Path Slider</h1>
+    <h2>Useless information on the internets</h2>
+    <div id="sliderContainer">
+    <input id="timeslide" type="range" min="0" max="2" value="0" step="1"/><br>
+    <span id="range">09:00</span>
+</div>
+</div>
+    <script>
+	// Width and Height of the whole visualization
+	var width = 800;
+	var height = 800;
+
+    var inputValue = null;
+    
+    var time = ["9", "12", "18"];
+
+	// Create SVG
+	var svg = d3.select( "body" )
+	    .append( "svg" )
+	    .attr( "width", width )
+	    .attr( "height", height );
+
+	// Append g element to the SVG
+	// g will contain geometry elements
+	var g = svg.append( "g" );
+
+	// Set Projection Parameters
+	// Mercator
+	var projectionMerc = d3.geo.mercator()
+	    .scale( 35000 )
+	    // .rotate( [71.057,0] )
+	    .center( [46.765, 24.713] )
+	    .translate( [width/2,height/2] );
+
+	// Create GeoPath function that uses built-in D3 functionality to turn
+	// lat/lon coordinates into screen coordinates
+	var geoPath = d3.geo.path()
+	    .projection( projectionMerc);
+
+	// Classic D3... Select non-existent elements, bind the data, append the elements, and apply attributes
+	// g.selectAll( "path" )
+	//     .data( districts.features )
+	//     .enter()
+	//     .append( "path" )
+	//     .attr( "fill", "#040404" )
+	//     .attr( "stroke", "#none")
+	//     .attr( "d", geoPath );
+
+
+	 var road_network = svg.append( "g" );
+
+    	road_network.selectAll( "path" )
+        .data( roads.features )
+        .enter()
+        .append( "path" )
+        .attr("fill", "none")
+        .attr( "stroke", "#eff3f6" )
+        .attr( "d", geoPath )
+        .attr("class", "roads")
+    
+    //add time slice for PNO 12pm
+     // var PNO_12pm = svg.append ("g")
+
+    	// PNO_12pm.selectAll( "path" )
+     //    .data( routes_PNO_12pm.features )
+     //    .enter()
+     //    .append( "path" )
+     //    .attr("fill", "none")
+     //    .attr( "stroke", "#49d2cf" )
+     //    .attr("stroke-width", "3px")
+     //    .attr( "d", geoPath )
+     //    .attr("class", "PNO_12pm")
+
+     var PNO_routes = svg.append ("g")
+
+    PNO_routes.selectAll( "path" )
+        .data( PNO_merge.features )
+        .enter()
+        .append( "path" )
+        .attr("fill", "none")
+        .attr( "stroke", "#49d2cf" )
+        .attr("stroke-width", "3px")
+        .attr( "d", geoPath )
+        .attr("class", "PNO_merge")
+        .on("mouseover", function(d){
+        d3.select("h2").text(d.properties.Hour);
+        d3.select(this).attr("class","PNO_merge hover");
+        })
+        .on("mouseout", function(d){
+        d3.select("h2").text("");
+        d3.select(this).attr("class","PNO_merge");
+        });
+        // when the input range changes update the value 
+        d3.select("#timeslide").on("input", function() {
+            update(+this.value);
+        });
+
+		// PNO_routes.selectAll( "path" )
+		//         .data( PNO_9.features )
+		//         .enter()
+		//         .append( "path" )
+		//         .attr("fill", "none")
+		//         .attr( "stroke", "#c51b8a" )
+		//         .attr("stroke-width", "3px")
+		//         .attr( "d", geoPath )
+		//         .attr("class", "PNO_merge")
+		//         .on("mouseover", function(d){
+		//         d3.select("h2").text(d.properties.Hour);
+		//         d3.select(this).attr("class","PNO_merge hover");
+		//         })
+		//         .on("mouseout", function(d){
+		//         d3.select("h2").text("");
+		//         d3.select(this).attr("class","PNO_merge");
+		//         });
+		//         // when the input range changes update the value 
+		//         d3.select("#timeslide").on("input", function() {
+		//             update(+this.value);
+		//         });
+        // update the stroke of each SVG of class "incident" with value
+        function update(value) {
+            document.getElementById("range").innerHTML=time[value];
+            inputValue = time[value];
+            d3.selectAll(".PNO_merge")
+                .attr("stroke", timeMatch);
+        }
+        function timeMatch(data, value) {
+            var d = new Date(data.properties.Hour);
+            var m = time[d.getHours()];
+            if (inputValue == m) {
+                this.parentElement.appendChild(this);
+                return "red";
+            } else {
+                return "#999";
+            };
+}
+        function initialDate(d,i){
+                var d = new Date(d.properties.Hour);
+                var m = time[d.getHours()];
+                if (m == "9") {
+                    this.parentElement.appendChild(this);
+                    return "red";
+                } else {
+                    return "#999";
+        };
+        }
+    </script>
+</body>
+</html>
