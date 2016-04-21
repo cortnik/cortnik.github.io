@@ -9,7 +9,7 @@
     <script src="/Path_Data/roads.geojson"></script>
     <script src="/Path_Data/districts.geojson"></script>
     <script src="/Path_Data/route_PNO_12pm.geojson"></script>
-    <script src="/Path_Data/PNO_910.geojson"></script>
+    <script src="/path_data/PNO_910.geojson"></script>
 <!--     <script src="merged_PND_routes.geojson"></script> -->
     <script src="/Path_Data/merged_PNO_routes.geojson"></script>
     <script src="/Path_Data/metro_lines.geojson"></script>
@@ -100,7 +100,7 @@
      var road_network = svg.append( "g" );
 
         road_network.selectAll( "path" )
-        .data( roads.features )
+        .data(roads.features )
         .enter()
         .append( "path" )
         .attr("fill", "none")
