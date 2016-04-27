@@ -1,0 +1,634 @@
+var dataset = {
+  "type": "FeatureCollection", 
+  "features": [
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 3, 
+        "oid": 124, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 373, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 373, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.855
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 637, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 800, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 890, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 972, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.855
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1037, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1133, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.855
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1177, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1186, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1309, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.855
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1321, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.718999999999994, 
+          24.854
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1345, 
+        "long_dest": 46.718999999999994, 
+        "hour": "21:00", 
+        "lat_dest": 24.854
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.853
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1353, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.853
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1384, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.855
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1402, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1404, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.718999999999994, 
+          24.854
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1439, 
+        "long_dest": 46.718999999999994, 
+        "hour": "21:00", 
+        "lat_dest": 24.854
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1500, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1532, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.855
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1535, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.855
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1556, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.855
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.722, 
+          24.849
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1607, 
+        "long_dest": 46.722, 
+        "hour": "21:00", 
+        "lat_dest": 24.849
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1611, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 3, 
+        "oid": 1619, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.718999999999994, 
+          24.854
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1619, 
+        "long_dest": 46.718999999999994, 
+        "hour": "21:00", 
+        "lat_dest": 24.854
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1619, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.855
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 3, 
+        "oid": 1655, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 2, 
+        "oid": 1655, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.855
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1661, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1692, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.855
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1693, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.724, 
+          24.848000000000003
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1699, 
+        "long_dest": 46.724, 
+        "hour": "21:00", 
+        "lat_dest": 24.848000000000003
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1699, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.855
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.72, 
+          24.855
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1705, 
+        "long_dest": 46.72, 
+        "hour": "21:00", 
+        "lat_dest": 24.855
+      }
+    }, 
+    {
+      "geometry": {
+        "type": "Point", 
+        "coordinates": [
+          46.718999999999994, 
+          24.854
+        ]
+      }, 
+      "type": "Feature", 
+      "properties": {
+        "flow": 1, 
+        "oid": 1709, 
+        "long_dest": 46.718999999999994, 
+        "hour": "21:00", 
+        "lat_dest": 24.854
+      }
+    }
+  ]
+}
