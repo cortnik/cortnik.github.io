@@ -27,8 +27,48 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <!-- Adding Leaflet linkstuff -->
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<style>
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f16913;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 36px;
+  padding: 80px;
+  width: 400px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+
 </head>
 
 <body>
@@ -44,13 +84,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand topnav" href="http://cortnik.github.io/project/">WOMEN + RIYADH METRO</a>
+                <a class="navbar-brand topnav" href="#">WOMEN + RIYADH METRO</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="http://cortnik.github.io/project/#background">BACKGROUND</a>
+                        <a href="#background">BACKGROUND</a>
                     </li>
                     <li>
                         <a href="http://enialemik.github.io/riyadh/" target="blank">HOTSPOTS</a>
@@ -68,49 +108,50 @@
         <!-- /.container -->
     </nav>
 
- <!-- Our web map and content will go here -->
-    <div id="map" style="width: 705px; height: 600px"></div>
-    <!-- Add the Leaflet JavaScript library -->
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>
-        // Create variable to hold map element, give initial settings to map
-        var map = L.map('map',{ center: [24.713, 46.765], zoom: 10});
 
-        // Add OpenStreetMap tile layer to map element
-        L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
- }).addTo(map);
+    <!-- Header -->
+    <a name="about"></a>
+    <div class="intro-header">
+        <div class="container">
 
-        // Create point feature for Princess Noura 
-        var myDataPoint = L.marker([24.84514, 46.715746]).addTo(map);
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <img src="img/Riyadh_Logo_trans.png" alt="" align="center" height="250" width="250">
+                        <h1>WOMEN + RIYADH METRO 2018</h1>
+                        <h3>How well does the proposed metro serve</h3>
+                        <h3>university women in Riyadh?</h3>
+                    </div>
+                </div>
+            </div>
 
-        // Create an Empty Popup
-        var popup = L.popup();
-         
-        // Write function to set Properties of the Popup
-        function onMapClick(e) {
-            popup
-                .setLatLng(e.latlng)
-                .setContent("You clicked the map at " + e.latlng.toString())
-                .openOn(map);
-        }
-         
-        // Listen for a click event on the Map element
-        map.on('click', onMapClick);
+        </div>
+        <!-- /.container -->
 
-        // load GeoJSON from an external file
-        $.getJSON("hotspot_data/final/PNDhotspot_1112.geojson",function(data){
-            // add GeoJSON layer to the map once the file is loaded
-            L.geoJson(data,{
-                onEachFeature: function (feature, layer) {
-                    layer.bindPopup(feature.properties.flow);
-                }
-            }).addTo(map);
-        });
-    </script>
-    <!-- /.container --> 
+    </div>
+    <!-- /.intro-header -->
+
+    <!-- Page Content -->
+
+	<a  name="background"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">BACKGROUND</h2>
+                    <p class="lead">In a city where women cannot drive, a public rail and bus system could have a tremendous impact on the mobility of women.<br><br>We have analyzed movement to/from Riyadh's women's university, Princess Noura University, using Origin-Destination matrices derived from cell phone call detail records by <a href="http://cces-kacst-mit.org/" target="blank"> the Center for Complex Engineering Systems</a>.<br><br>Our analysis identifies "hotspots" where women travel before or after going to the Princess Noura campus. In addition, we've calculated likely shortests paths to/from these hotspots and located <a href="leaflet_test.html"> service gaps</a> in the proposed rail system based on the hotspots.</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-1 col-sm-6">
+                    <br><br><br><br>
+                    <a href="http://enialemik.github.io/riyadh/"><button class="button" style="vertical-align:middle"><span> Sexier Button to Enter Visualization Space Coming Soon</span></button></a>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
 
     <!-- Footer -->
     <footer>
@@ -146,8 +187,6 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
-   
-    </script>
 </body>
-</html>
 
+</html>
