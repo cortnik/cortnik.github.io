@@ -7,10 +7,6 @@
 
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="Path_Data/roads.geojson"></script>
-    <script src="Path_Data/districts.geojson"></script>
-    <script src="Path_Data/route_PNO_12pm.geojson"></script>
-    <script src="path_data/PNO_910.geojson"></script>
-<!--     <script src="merged_PND_routes.geojson"></script> -->
     <script src="Path_Data/merged_PNO_routes.geojson"></script>
     <script src="Path_Data/metro_lines.geojson"></script>
     <style>
@@ -36,9 +32,7 @@
         font-size: 1em;
         font-family: 'Roboto Condensed', sans-serif
     }
-    .hover {
-        fill: yellow;   
-    }
+
     #sliderContainer {
     text-align: center;
     position: relative;
@@ -62,7 +56,7 @@
 
     var inputValue = null;
     
-    var time = ["9", "12", "18"];
+    var time = [9, 12, 18];
 
     // Create SVG
     var svg = d3.select( "body" )
@@ -87,16 +81,6 @@
     var geoPath = d3.geo.path()
         .projection( projectionMerc);
 
-    // Classic D3... Select non-existent elements, bind the data, append the elements, and apply attributes
-    // g.selectAll( "path" )
-    //     .data( districts.features )
-    //     .enter()
-    //     .append( "path" )
-    //     .attr( "fill", "#040404" )
-    //     .attr( "stroke", "#none")
-    //     .attr( "d", geoPath );
-
-
      var road_network = svg.append( "g" );
 
         road_network.selectAll( "path" )
@@ -108,19 +92,7 @@
         .attr("stroke-width", .5)
         .attr( "d", geoPath )
         .attr("class", "roads")
-    
-    //add time slice for PNO 12pm
-     // var PNO_12pm = svg.append ("g")
-
-        // PNO_12pm.selectAll( "path" )
-     //    .data( routes_PNO_12pm.features )
-     //    .enter()
-     //    .append( "path" )
-     //    .attr("fill", "none")
-     //    .attr( "stroke", "#49d2cf" )
-     //    .attr("stroke-width", "3px")
-     //    .attr( "d", geoPath )
-     //    .attr("class", "PNO_12pm")
+  
 
      var PNO_routes = svg.append ("g")
 
@@ -132,42 +104,19 @@
             .attr( "stroke", "#5fffd3")
             .attr("stroke-width", "3px")
             .attr( "d", geoPath )
-            .attr("class", "PNO_merge")
+            .attr("class", "path_hover")
             .on("mouseover", function(d){
             d3.select("h2").text("Helpful Information Will Pop Up Here: " + d.properties.Hour);
-            d3.select(this).attr("class","PNO_merge hover");
+            d3.select(this).attr("class","path_hover");
             })
             .on("mouseout", function(d){
             d3.select("h2").text("");
-            d3.select(this).attr("class","PNO_merge");
+            d3.select(this).attr("class","paths");
                 });
                 // when the input range changes update the value 
             d3.select("#timeslide").on("input", function() {
                     update(+this.value);
                 });
-
-        // PNO_routes.selectAll( "path" )
-        //         .data( PNO_9.features )
-        //         .enter()
-        //         .append( "path" )
-        //         .attr("fill", "none")
-        //         .attr( "stroke", "#c51b8a" )
-        //         .attr("stroke-width", "3px")
-        //         .attr( "d", geoPath )
-        //         .attr("class", "PNO_merge")
-        //         .on("mouseover", function(d){
-        //         d3.select("h2").text(d.properties.Hour);
-        //         d3.select(this).attr("class","PNO_merge hover");
-        //         })
-        //         .on("mouseout", function(d){
-        //         d3.select("h2").text("");
-        //         d3.select(this).attr("class","PNO_merge");
-        //         });
-        //         // when the input range changes update the value 
-        //         d3.select("#timeslide").on("input", function() {
-        //             update(+this.value);
-        //         });
-        // update the stroke of each SVG of class "incident" with value
 
         function update(value) {
             document.getElementById("range").innerHTML=time[value];
@@ -176,25 +125,15 @@
                 .attr("stroke", timeMatch);
         }
         function timeMatch(data, value) {
-            var d = data.properties.Hour;
-            var m = "9";
+            var d = new Time(data.properties.Hour);
+            var m = time[d.getHour()];
             if (inputValue == m) {
                 this.parentElement.appendChild(this);
-                return "display";
+                return "red";
             } else {
-                return "none";
+                return "#999";
             };
-}
-        // function initialDate(d,i){
-        //         var d = new Date(d.properties.Hour);
-        //         var m = time[d.getHours()];
-        //         if (m == "9") {
-        //             this.parentElement.appendChild(this);
-        //             return "red";
-        //         } else {
-        //             return "#999";
-        // };
-        // }
+        }
     </script>
 </body>
 </html>
