@@ -67,20 +67,26 @@
         </div>
         <!-- /.container -->
     </nav>
-
+    <div class="intro-header">
+    	<div class="container">
+    <h1>Service Gap Analysis Coming Here</h1>
+    	</div>
+    </div>
+ 
  <!-- Our web map and content will go here -->
-    <div id="map" style="width: 705px; height: 600px"></div>
+    <div class="container">
+    	<div id="map" style="width: 705px; height: 600px; align: center"></div>
     <!-- Add the Leaflet JavaScript library -->
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>
+   	 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+   	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+   	 <script>
         // Create variable to hold map element, give initial settings to map
         var map = L.map('map',{ center: [24.713, 46.765], zoom: 10});
 
         // Add OpenStreetMap tile layer to map element
         L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
         maxZoom: 18,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>contributors &copy; <a href="https://cartodb.com/attributions"> CartoDB</a>, CartoDB  <a href="https://cartodb.com/attributions">attribution</a>'
  }).addTo(map);
 
         // Create point feature for Princess Noura 
@@ -96,20 +102,21 @@
                 .setContent("You clicked the map at " + e.latlng.toString())
                 .openOn(map);
         }
-         
+
         // Listen for a click event on the Map element
         map.on('click', onMapClick);
 
         // load GeoJSON from an external file
-        $.getJSON("hotspot_data/final/PNDhotspot_1112.geojson",function(data){
+        $.getJSON("hotspot_data/test.geojson",function(data){
             // add GeoJSON layer to the map once the file is loaded
-            L.geoJson(data,{
-                onEachFeature: function (feature, layer) {
-                    layer.bindPopup(feature.properties.flow);
-                }
+            L.geoJson(data, {
+            	style: function(feature) {
+            		return {opacity: 0, fillOpacity: 0.5, fillColor: "636363"};
+            	}
             }).addTo(map);
         });
     </script>
+    </div>
     <!-- /.container --> 
 
     <!-- Footer -->

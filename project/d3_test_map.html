@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Service Gap Analysis</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="hotspot_data/roads.geojson"></script>
+    <script src="hotspot_data/count_400m.geojson"></script>
+    <script src="hotspot_data/metro.geojson"></script>
+    
+    <style>
+     .hotspothover {
+            fill: #ffe28a; 
+        }
+        </style>
+</head>
+<body>
+
+ <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="http://cortnik.github.io/project/">WOMEN + RIYADH METRO</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://cortnik.github.io/project/#background">BACKGROUND</a>
+                    </li>
+                    <li>
+                        <a href="http://enialemik.github.io/riyadh/" target="blank">HOTSPOTS</a>
+                    </li>
+                    <li>
+                        <a href="http://tsb123.github.io/d3/indexanimate.html" target="blank">PATHS</a>
+                    </li>
+                    <li>
+                        <a href="#analysis">ANALYSIS</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <div class="intro-header">
+        <div class="container">
+    <h1>Service Gap Analysis Coming Here</h1>
+        </div>
+    </div>
+    <script>
+    // Width and Height of the whole visualization
+    var width = 700;
+    var height = 700;
+    // Create SVG
+    var svg = d3.select( "body" )
+        .append( "svg" )
+        .attr( "width", width )
+        .attr( "height", height );
+    // Append g element to the SVG
+    // g will contain geometry elements
+    var g = svg.append( "g" );
+    // Set Projection Parameters
+    // Mercator
+    var projection = d3.geo.mercator()
+        .scale( 40000 )
+        // .rotate( [71.057,0] )
+        .center( [46.765, 24.713] )
+        .translate( [width/2,height/2] );
+    // Create GeoPath function that uses built-in D3 functionality to turn
+    // lat/lon coordinates into screen coordinates
+    var geoPath = d3.geo.path()
+        .projection(projection);
+        
+    var road_network = svg.append( "g" );
+        road_network.selectAll( "path" )
+        .data(roads.features )
+        .enter()
+        .append( "path" )
+        .attr("fill", "none")
+        .attr( "stroke", "#c9c9c9" )
+        .attr("stroke-width", .5)
+        .attr( "d", geoPath )
+        .attr("class", "roads");
+
+    var metroLines = svg.append( "g" );
+        metroLines.selectAll( "path" )
+        .data(metro.features )
+        .enter()
+        .append( "path" )
+        .attr("fill", "none")
+        .attr( "stroke", "#cc4c02" )
+        .attr("stroke-width", 1)
+        .attr( "d", geoPath )
+        .attr("class", "metro");
+
+    var station400 = svg.append("g");
+
+    station400.selectAll( "path")
+        .data(count400.features )
+        .enter()
+        .append("path")
+        .attr( "stroke", "#ffe28a" )
+        .attr("d", geoPath)
+        .on("mouseover", function(d){
+            d3.select("h2").text("number of hotspots served: " + d.properties.NUMPOINTS);
+            d3.select(this).attr("class","hotspothover");
+        })
+        .on("mouseout", function(d){
+            d3.select("h2").text("");
+            d3.select(this).attr("class","hotspot");
+        });
+
+
+        
+   </script>
+</body>
+</html>
