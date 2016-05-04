@@ -15,9 +15,10 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
+	<!-- Data links -->
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="hotspot_data/roads.geojson"></script>
-    <script src="hotspot_data/count_400m.geojson"></script>
     <script src="hotspot_data/metro.geojson"></script>
     
     <style>
@@ -68,6 +69,14 @@
         </div>
     </div>
     <script>
+
+    queue()
+        .defer(d3.json, "hotspot_data/PND_flow_count_400m.geojson")
+        // .defer(d3.json, "hotspot_data/PND_flow_count_800m.geojson")
+        // .defer(d3.json, "hotspot_data/PNO_flow_count_400m.geojson")
+        // .defer(d3.json, "hotspot_data/PNO_flow_count_800m.geojson")
+        .await(makeBuffers);
+
     // Width and Height of the whole visualization
     var width = 700;
     var height = 700;
@@ -79,6 +88,7 @@
     // Append g element to the SVG
     // g will contain geometry elements
     var g = svg.append( "g" );
+    var buffer1 = svg.append("g")
     // Set Projection Parameters
     // Mercator
     var projection = d3.geo.mercator()
@@ -113,16 +123,22 @@
         .attr( "d", geoPath )
         .attr("class", "metro");
 
-    var station400 = svg.append("g");
+    function makeBuffers (error, PND400) {
+        if (error) throw error;
 
-    station400.selectAll( "path")
-        .data(count400.features )
+    console.log(PND400);
+    
+    	buffer1.selectAll("path")
+        .data(PND400.features )
         .enter()
         .append("path")
+        .attr("fill", "ffe28a")
         .attr( "stroke", "#ffe28a" )
-        .attr("d", geoPath)
+        .attr( "d", geoPath )
+        .attr("transform", function (d) {return })
+        .attr("class", "buffer")
         .on("mouseover", function(d){
-            d3.select("h2").text("number of hotspots served: " + d.properties.NUMPOINTS);
+            d3.select("h2").text("number of people served: " + d.properties.Sum_flow);
             d3.select(this).attr("class","hotspothover");
         })
         .on("mouseout", function(d){
@@ -130,6 +146,8 @@
             d3.select(this).attr("class","hotspot");
         });
 
+      
+    }
 
         
    </script>

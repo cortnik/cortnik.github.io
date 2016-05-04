@@ -29,6 +29,10 @@
     <![endif]-->
     <!-- Adding Leaflet linkstuff -->
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+    <!-- Data links -->
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
 </head>
 
 <body>
@@ -79,6 +83,9 @@
     <!-- Add the Leaflet JavaScript library -->
    	 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
    	 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+   	 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+   	 <script src="http://d3js.org/queue.v1.min.js"></script>
+
    	 <script>
         // Create variable to hold map element, give initial settings to map
         var map = L.map('map',{ center: [24.713, 46.765], zoom: 10});
@@ -89,32 +96,66 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>contributors &copy; <a href="https://cartodb.com/attributions"> CartoDB</a>, CartoDB  <a href="https://cartodb.com/attributions">attribution</a>'
  }).addTo(map);
 
-        // Create point feature for Princess Noura 
-        var myDataPoint = L.marker([24.84514, 46.715746]).addTo(map);
 
-        // Create an Empty Popup
-        var popup = L.popup();
-         
-        // Write function to set Properties of the Popup
-        function onMapClick(e) {
-            popup
-                .setLatLng(e.latlng)
-                .setContent("You clicked the map at " + e.latlng.toString())
-                .openOn(map);
-        }
+        var svg = d3.select(map.getPanes().overlayPane).append("svg"),
+        	
+    	g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
-        // Listen for a click event on the Map element
-        map.on('click', onMapClick);
+    	queue()
+    		.defer(d3.json, "hotspot_data/PND_flow_count_400m.geojson")
+    		.defer(d3.json, "hotspot_data/metro_v2.geojson")
+    		.await(makeMyMap);
+        
+        function makeMyMap (error, PND400, metro) {
+        		if (error) throw error;
 
-        // load GeoJSON from an external file
-        $.getJSON("hotspot_data/test.geojson",function(data){
-            // add GeoJSON layer to the map once the file is loaded
-            L.geoJson(data, {
-            	style: function(feature) {
-            		return {opacity: 0, fillOpacity: 0.5, fillColor: "636363"};
-            	}
-            }).addTo(map);
-        });
+  		var transform = d3.geo.transform({point: projectPoint}),
+        path = d3.geo.path().projection(transform);
+
+        var feature1 = g.selectAll("path")
+        	.data(PND400.features)
+        	.enter().append("path")
+            .attr( "fill", "#f2e917" )
+            .attr( "stroke", "#f2e917" )
+            .attr( "d", path );
+
+        var feature2 = g.selectAll("path")
+            .data(metro.features)
+            .enter().append("path")
+            .attr("fill", "none")
+            .attr( "stroke", "#cc4c02" )
+            .attr("stroke-width", 1)
+            .attr( "d", path )
+            .attr("class", "metro");
+
+  		map.on("viewreset", reset);
+  		reset();
+  	 }
+
+        var transform = d3.geo.transform({point: projectPoint}),
+        path = d3.geo.path().projection(transform);
+  		// Reposition the SVG to cover the features.
+	  	function reset() {
+    	
+    	var bounds = path.bounds(PND400.features),
+        topLeft = bounds[0],
+        bottomRight = bounds[1];
+
+    svg .attr("width", bottomRight[0] - topLeft[0])
+        .attr("height", bottomRight[1] - topLeft[1])
+        .style("left", topLeft[0] + "px")
+        .style("top", topLeft[1] + "px");
+
+    g   .attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+  	}
+  	// Use Leaflet to implement a D3 geometric transformation.
+
+ 	 function projectPoint(x, y) {
+    var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+    this.stream.point(point.x, point.y);
+
+};
+
     </script>
     </div>
     <!-- /.container --> 
