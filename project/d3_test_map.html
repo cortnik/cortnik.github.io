@@ -25,7 +25,22 @@
      .hotspothover {
             fill: #ffe28a; 
         }
+
+    .hotspot {
+            opacity: .7;
+        }
+
+    .buffer {
+        fill: "#5F9EA0"
+        stroke: "#5F9EA0"
+    }
+
+    h2 {
+        top: 300px;
+    }
+
         </style>
+    }
 </head>
 <body>
 
@@ -71,15 +86,13 @@
     <script>
 
     queue()
-        .defer(d3.json, "hotspot_data/PND_flow_count_400m.geojson")
-        // .defer(d3.json, "hotspot_data/PND_flow_count_800m.geojson")
-        // .defer(d3.json, "hotspot_data/PNO_flow_count_400m.geojson")
-        // .defer(d3.json, "hotspot_data/PNO_flow_count_800m.geojson")
+        .defer(d3.json, "hotspot_data/test_buffer.geojson")
+        .defer(d3.json, "hotspot_data/all_hotspots_ever.geojson")
         .await(makeBuffers);
 
     // Width and Height of the whole visualization
-    var width = 700;
-    var height = 700;
+    var width = 1000;
+    var height = 1000;
     // Create SVG
     var svg = d3.select( "body" )
         .append( "svg" )
@@ -88,11 +101,14 @@
     // Append g element to the SVG
     // g will contain geometry elements
     var g = svg.append( "g" );
-    var buffer1 = svg.append("g")
+
+    var buffer1 = svg.append("g");
+
+    var PND_hotspots = svg.append("g");
     // Set Projection Parameters
     // Mercator
     var projection = d3.geo.mercator()
-        .scale( 40000 )
+        .scale( 70000 )
         // .rotate( [71.057,0] )
         .center( [46.765, 24.713] )
         .translate( [width/2,height/2] );
@@ -118,22 +134,23 @@
         .enter()
         .append( "path" )
         .attr("fill", "none")
-        .attr( "stroke", "#cc4c02" )
+        .attr( "stroke", "#252525" )
         .attr("stroke-width", 1)
         .attr( "d", geoPath )
         .attr("class", "metro");
 
-    function makeBuffers (error, PND400) {
+    function makeBuffers (error, test, PND) {
         if (error) throw error;
 
-    console.log(PND400);
-    
-    	buffer1.selectAll("path")
-        .data(PND400.features )
+    console.log(test);
+    console.log(PND);
+
+        buffer1.selectAll("path")
+        .data(test.features )
         .enter()
         .append("path")
-        .attr("fill", "ffe28a")
-        .attr( "stroke", "#ffe28a" )
+        .attr("fill", "#5F9EA0")
+        .attr( "stroke", "#5F9EA0" )
         .attr( "d", geoPath )
         .attr("transform", function (d) {return })
         .attr("class", "buffer")
@@ -143,13 +160,30 @@
         })
         .on("mouseout", function(d){
             d3.select("h2").text("");
-            d3.select(this).attr("class","hotspot");
+            d3.select(this).attr("class","buffer");
         });
+    
+    var color = d3.scale.threshold()
+        .domain([1, 2, 6, 15, 36])
+        .range(["#ffffd4", "#fee391", "#fec44f", "#fe9929", "#d95f0e", "#993404"]);
 
-      
+      PND_hotspots.selectAll("circle")
+        .data(PND.features )
+        .enter()
+        .append("circle")
+        .style("fill", function(d) { return color([d.properties.flow]); })
+        .attr("transform", function(d) {return "translate(" + projection([+d.properties.long,+d.properties.lat]) + ")";})
+        .attr("r", 2)
+        .attr("class", "hotspot");
+
     }
 
         
    </script>
+   <div>
+   <H1> ANALYSIS SUMMED UP HERE</H1>
+   </div>
+   <div></div>
+      <div></div>
 </body>
 </html>

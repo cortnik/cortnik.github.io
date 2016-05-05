@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Service Gap Analysis</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Adding Leaflet linkstuff -->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+	<!-- Data links -->
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="hotspot_data/roads.geojson"></script>
+    <script src="hotspot_data/metro.geojson"></script>
+    
+    <style>
+     .hotspothover {
+            fill: #ffe28a; 
+        }
+
+    .hotspot {
+            opacity: .7;
+        }
+
+    .buffer {
+        fill: "#5F9EA0"
+        stroke: "#5F9EA0"
+    }
+
+    h2 {
+        top: 300px;
+    }
+
+        </style>
+    }
+</head>
+<body>
+
+ <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="http://cortnik.github.io/project/">WOMEN + RIYADH METRO</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://cortnik.github.io/project/#background">BACKGROUND</a>
+                    </li>
+                    <li>
+                        <a href="http://enialemik.github.io/riyadh/" target="blank">HOTSPOTS</a>
+                    </li>
+                    <li>
+                        <a href="http://tsb123.github.io/d3/indexanimate.html" target="blank">PATHS</a>
+                    </li>
+                    <li>
+                        <a href="#analysis">ANALYSIS</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <div class="intro-header">
+        <div class="container">
+    <h1>Service Gap Analysis Coming Here</h1>
+        </div>
+    </div>
+
+    
+    <div class="container">
+    <iframe width="100%" height="520" frameborder="0" src="https://cortni.cartodb.com/viz/c0e616b8-0c1d-11e6-88a3-0ecd1babdde5/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+
+
+
+
+    <!-- Our web map and content will go here -->
+    <div class="container">
+        <div id="map" style="width: 705px; height: 600px; align: center"></div>
+    <!-- Add the Leaflet JavaScript library -->
+     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+     <script src="http://d3js.org/queue.v1.min.js"></script>
+
+     <script>
+         
+        // Create variable to hold map element, give initial settings to map
+        var map = L.map('map',{ center: [24.713, 46.765], zoom: 10});
+
+        // Add OpenStreetMap tile layer to map element
+        L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>contributors &copy; <a href="https://cartodb.com/attributions"> CartoDB</a>, CartoDB  <a href="https://cartodb.com/attributions">attribution</a>'
+ }).addTo(map);
+
+
+    
+
+    // Create SVG
+    var svg = d3.select(map.getPanes().overlayPane).append("svg"),
+            
+        g = svg.append("g").attr("class", "leaflet-zoom-hide");
+
+    
+    d3.json("hotspot_data/metro_v2.geojson", function(error, collection) {
+        if (error) throw error;
+    
+    var transform = d3.geo.transform({point: projectPoint}),
+      path = d3.geo.path().projection(transform);
+
+    var feature = g.selectAll("path")
+      .data(collection.features)
+      .enter().append("path")
+      .attr("fill", "none")
+      .attr( "stroke", "#252525" )
+      .attr("stroke-width", 1);
+
+    var buffer1 = svg.append("g");
+
+    var PND_hotspots = svg.append("g");
+    // Set Projection Parameters
+    // Mercator
+    
+    map.on("viewreset", reset);
+    reset();
+    
+  queue()
+        .defer(d3.json, "hotspot_data/test_buffer.geojson")
+        .defer(d3.json, "hotspot_data/PND_hotspots_all.geojson")
+        .await(reset);
+
+  // Reposition the SVG to cover the features.
+  function reset (error, test, PND) {
+        if(error) throw error;
+
+    console.log(test);
+
+    var bounds = path.bounds(collection),
+        topLeft = bounds[0],
+        bottomRight = bounds[1];
+
+    svg .attr("width", bottomRight[0] - topLeft[0])
+        .attr("height", bottomRight[1] - topLeft[1])
+        .style("left", topLeft[0] + "px")
+        .style("top", topLeft[1] + "px");
+
+    g   .attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+
+    feature.attr("d", path);
+
+    buffer1.selectAll("path")
+        .data(test.features )
+        .enter()
+        .append("path")
+        .attr("fill", "#5F9EA0")
+        .attr( "stroke", "#5F9EA0" )
+        .attr( "d", geoPath )
+        .attr("transform", function (d) {return })
+        .attr("class", "buffer")
+        .on("mouseover", function(d){
+            d3.select("h2").text("number of people served: " + d.properties.Sum_flow);
+            d3.select(this).attr("class","hotspothover");
+        })
+        .on("mouseout", function(d){
+            d3.select("h2").text("");
+            d3.select(this).attr("class","buffer");
+        });
+    
+    var color = d3.scale.threshold()
+        .domain([1, 2, 6, 15, 36])
+        .range(["#ffffd4", "#fee391", "#fec44f", "#fe9929", "#d95f0e", "#993404"]);
+
+      PND_hotspots.selectAll("circle")
+        .data(PND.features )
+        .enter()
+        .append("circle")
+        .style("fill", function(d) { return color([d.properties.flow]); })
+        .attr("transform", function(d) {return "translate(" + projection([+d.properties.long_origi,+d.properties.lat_origin]) + ")";})
+        .attr("r", 1)
+        .attr("class", "hotspot");
+  }
+
+  // Use Leaflet to implement a D3 geometric transformation.
+  function projectPoint(x, y) {
+    var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+    this.stream.point(point.x, point.y);
+ }
+});
+        
+   </script>
+   <div>
+   <H1> ANALYSIS SUMMED UP HERE</H1>
+   </div>
+   <div></div>
+      <div></div>
+</body>
+</html>
