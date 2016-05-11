@@ -22,6 +22,7 @@
     <script src="hotspot_data/metro.geojson"></script>
     
     <style>
+
      .hotspothover {
             fill: #ffe28a; 
         }
@@ -38,6 +39,17 @@
     h2 {
         top: 300px;
     }
+
+    .hidden {
+        display: none;
+    }
+    div.tooltip {
+        color: #f5f5f5;
+        background-color: #5F9EA0;
+        padding: .5em;
+        border-radius: 2px;
+        opacity: 0.9;
+        position: absolute;
 
         </style>
     }
@@ -83,10 +95,12 @@
     <h1>Service Gap Analysis Coming Here</h1>
         </div>
     </div>
+    <div class="container">
+
     <script>
 
     queue()
-        .defer(d3.json, "hotspot_data/test_buffer.geojson")
+        .defer(d3.json, "hotspot_data/buffer_800.geojson")
         .defer(d3.json, "hotspot_data/all_hotspots_ever.geojson")
         .await(makeBuffers);
 
@@ -104,11 +118,11 @@
 
     var buffer1 = svg.append("g");
 
-    var PND_hotspots = svg.append("g");
+    var all_hotspots = svg.append("g");
     // Set Projection Parameters
     // Mercator
     var projection = d3.geo.mercator()
-        .scale( 70000 )
+        .scale( 90000 )
         // .rotate( [71.057,0] )
         .center( [46.765, 24.713] )
         .translate( [width/2,height/2] );
@@ -116,7 +130,10 @@
     // lat/lon coordinates into screen coordinates
     var geoPath = d3.geo.path()
         .projection(projection);
-        
+    
+    var tooltip = d3.select('body').append('div')
+            .attr('class', 'hidden tooltip');
+
     var road_network = svg.append( "g" );
         road_network.selectAll( "path" )
         .data(roads.features )
@@ -139,14 +156,15 @@
         .attr( "d", geoPath )
         .attr("class", "metro");
 
-    function makeBuffers (error, test, PND) {
+    
+    function makeBuffers (error, buff800, hotspots) {
         if (error) throw error;
 
-    console.log(test);
-    console.log(PND);
+    console.log(buff800);
+    console.log(hotspots);
 
         buffer1.selectAll("path")
-        .data(test.features )
+        .data(buff800.features )
         .enter()
         .append("path")
         .attr("fill", "#5F9EA0")
@@ -154,21 +172,25 @@
         .attr( "d", geoPath )
         .attr("transform", function (d) {return })
         .attr("class", "buffer")
-        .on("mouseover", function(d){
-            d3.select("h2").text("number of people served: " + d.properties.Sum_flow);
-            d3.select(this).attr("class","hotspothover");
-        })
-        .on("mouseout", function(d){
-            d3.select("h2").text("");
-            d3.select(this).attr("class","buffer");
+        .on('mousemove', function(d) {
+                    var mouse = d3.mouse(svg.node()).map(function(d) {
+                        return parseInt(d);
+                    });
+                    tooltip.classed('hidden', false)
+                        .attr('style', 'left:' + (mouse[0] +1) +
+                                'px; top:' + (mouse[1] - 15) + 'px')
+                        .html("Flow: " + d.properties.SUMflow);
+                })
+                .on('mouseout', function() {
+                    tooltip.classed('hidden', true);
         });
     
     var color = d3.scale.threshold()
         .domain([1, 2, 6, 15, 36])
         .range(["#ffffd4", "#fee391", "#fec44f", "#fe9929", "#d95f0e", "#993404"]);
 
-      PND_hotspots.selectAll("circle")
-        .data(PND.features )
+      all_hotspots.selectAll("circle")
+        .data(hotspots.features )
         .enter()
         .append("circle")
         .style("fill", function(d) { return color([d.properties.flow]); })
@@ -180,6 +202,7 @@
 
         
    </script>
+   </div>
    <div>
    <H1> ANALYSIS SUMMED UP HERE</H1>
    </div>
