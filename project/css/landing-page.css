@@ -172,3 +172,27 @@ footer {
 p.copyright {
     margin: 15px 0 0;
 }
+.btn {
+    padding: 10px;
+    border-radius: 1px white;
+    text-transform: uppercase;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;;
+    font-weight: 400;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.btn-default {
+    border: 1px solid #4099ff;
+    color: #4099ff;
+    background-color: transparent;
+}
+
+.btn-default:hover,
+.btn-default:focus {
+    border: 1px solid #4099ff;
+    outline: 0;
+    color: #4099ff;
+    background-color: transparent;
+}
