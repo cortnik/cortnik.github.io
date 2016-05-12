@@ -4496,26 +4496,26 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #B1ACA2;
-  border-color: #B1ACA2;
+  background-color: #808080;
+  border-color: #FFFAFA;
 }
 .navbar-default .navbar-brand {
-  color: #F7F7F7;
+  color: #FFFAFA;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #5e5e5e;
+  color: #4099ff;
   background-color: transparent;
 }
 .navbar-default .navbar-text {
-  color: #F7F7F7;
+  color: #FFFAFA;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #F7F7F7;
+  color: #FFFAFA;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #333;
+  color: #4099ff;
   background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
