@@ -35,6 +35,8 @@ body {
 }
 
 .intro {
+	position: absolute;
+    left: 20%;
     display: table;
     width: 100%;
     height: auto;
