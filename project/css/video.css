@@ -127,9 +127,10 @@ a:focus {
 }
 
 .btn {
+	padding: 10px;
     border-radius: 1px white;
     text-transform: uppercase;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;;
     font-weight: 400;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
