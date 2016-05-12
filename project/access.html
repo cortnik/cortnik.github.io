@@ -264,7 +264,7 @@ var tooltip1 = d3.select("#area1")
           return tooltip1.style("visibility", "visible").text(d.counta + "persons");
         })
         .on("mousemove", function(d){
-          return tooltip1.style("top", (event.pageY-20)+"px").style("left",(event.pageX-200)+"px").text(d.counta + " persons ");
+          return tooltip1.style("top", (event.pageY-20)+"px").style("left",(event.pageX-100)+"px").text(d.counta + " persons ");
         })
         .on("mouseout", function(d){
           return tooltip1.style("visibility", "hidden");
@@ -412,7 +412,7 @@ var tooltip = d3.select("#area2")
           return tooltip.style("visibility", "visible").text(d.count + "persons");
         })
         .on("mousemove", function(d){
-          return tooltip.style("top", (event.pageY)+"px").style("left",(event.pageX-200)+"px").text(d.count + " persons ");
+          return tooltip.style("top", (event.pageY)+"px").style("left",(event.pageX-100)+"px").text(d.count + " persons ");
         })
         .on("mouseout", function(d){
           return tooltip.style("visibility", "hidden");
