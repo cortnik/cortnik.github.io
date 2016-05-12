@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Condensed'), local('RobotoCondensed-Regular'), url(https://fonts.gstatic.com/s/robotocondensed/v13/Zd2E9abXLFGSr9G3YK2MsH4vxAoi6d67T_UKWi0EoHQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
 video { 
     position: fixed;
     top: 50%;
@@ -21,12 +29,14 @@ video {
 body {
     width: 100%;
     height: 100%;
-	font-family: 'Open Sans Condensed', sans-serif;;
-
+	font-family: "Roboto Condensed", sans-serif;
     color: #000;
     background-color: #fff;
 }
+
 .intro {
+	position: absolute;
+    left: 20%;
     display: table;
     width: 100%;
     height: auto;
@@ -34,14 +44,15 @@ body {
     text-align: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
-	 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;;
+	 font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;;
     background-size: cover;
     -o-background-size: cover;
 }
 
+
 .intro .intro-body .brand-heading {
-    font-size:100px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;;
+    font-size:50px;
+	font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;;
 }
 
 .intro .intro-body .intro-text {
@@ -57,7 +68,7 @@ body {
     }
 
     .intro .intro-body .brand-heading {
-        font-size: 100px;
+        font-size: 50px;
 		text-align:center;
     }
 
@@ -69,6 +80,7 @@ body {
 
 
 
+title,
 h1,
 h2,
 h3,
@@ -77,7 +89,7 @@ h5,
 h6 {
     margin: 0 0 35px;
     text-transform: uppercase;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;;
     font-weight: 700;
     letter-spacing: 1px;
 }
@@ -86,7 +98,7 @@ p {
     margin: 0 0 25px;
     font-size: 14px;
     line-height: 1.5;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;;
+	font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;;
 	font-weight: 300;
 
 }
@@ -115,9 +127,10 @@ a:focus {
 }
 
 .btn {
+	padding: 10px;
     border-radius: 1px white;
     text-transform: uppercase;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;;
+    font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;;
     font-weight: 400;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
