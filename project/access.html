@@ -96,7 +96,8 @@ text {
 	position: relative;
 }
 table, th, td {
-    border-width: 1px ;
+    border-style: solid;
+    border-width: 1px;
     border-color: gray;
     border-collapse: collapse;
 }
@@ -106,14 +107,23 @@ th, td {
 }
 table{
   /*width:600px;*/
-  height:200px;
-    width:70%; 
-    margin-left:15%; 
-    margin-right:15%; 
-    margin-bottom:20px;
+  height:100px;
   background-color: #FFFFFF;
 }
 
+#tablesum{
+  width:1200px;
+  height:900px;
+  margin-left: 60px;
+  margin-top:20px;
+  margin-bottom:20px;
+}
+  
+    /* width:70%; */
+    /*margin-left:15%; */
+    /*margin-right:15%; */
+    /*margin-bottom:20px;*/
+    /*    }*/
 
 
 </style>
@@ -194,7 +204,7 @@ table{
   </form></div> -->
 </div>
 </div>
-<div id = table> <h2>Summary of Total Commuters within Walking Distance of a Metro Station In a Day</h2>
+<div id = tablesum> <h2>Summary of Total Commuters within Walking Distance of a Metro Station In a Day</h2>
 <table id= summarychart>
   <tr>
     <th> </th>
@@ -215,7 +225,6 @@ table{
     <td>82.4% </td> 
   </tr>
 </table>	
-	
 </div>
 
 <script>
