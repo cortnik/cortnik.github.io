@@ -41,7 +41,7 @@
         top: 300px;
     }
 
-    #wrap{
+#wrap{
   width:1200px;
   height:900px;
   margin-left: 60px;
@@ -95,6 +95,36 @@ text {
 	height:15px;
 	position: relative;
 }
+table, th, td {
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: center;
+}
+table{
+  /*width:600px;*/
+  height:100px;
+  background-color: #FFFFFF;
+}
+
+#tablesum {
+  width:1200px;
+  height:300px;
+  margin-left:60px;
+  margin-top:20px;
+}
+  
+    /* width:70%; */
+    /*margin-left:15%; */
+    /*margin-right:15%; */
+    /*margin-bottom:20px;*/
+    /*    }*/
+
+
 </style>
     
 </head>
@@ -140,7 +170,11 @@ text {
     <br>
         </div>
     </div>
-
+	<div class="container">
+    <p>This map allows for a more detailed look at the locations of the hotspots, as well as a better understanding of the concentrations of activity in relation to the proposed metro stops.<br>
+	Specifically, there is a 400m and 800m buffer around each stop and the flow assigned to the buffer shows how many commuters fall within these "walkable" distances from the metro.<br>
+	One can interact with this map to understand which metro stations are likely to be most popular with the women university students, and also provide a visual sense of which are the most populated hotspots that are not served by the metro. </p>
+	</div>
     
     <div class="container">
     <iframe width="100%" height="620" frameborder="0" src="https://cortni.cartodb.com/viz/c0e616b8-0c1d-11e6-88a3-0ecd1babdde5/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
@@ -160,21 +194,40 @@ text {
      <br>
      <div id ="radio1"> 
      <form>
-    <label><input type="radio" name="mode" value="multiples1" checked> Multiples</label>
-    <label><input type="radio" name="mode" value="stacked1"> Stacked</label>
+    <label><input type="radio" name="mode" value="multiples1" checked> Expand</label>
+    <label><input type="radio" name="mode" value="stacked1"> Collapse</label>
     </form>
     </div>
     <div id="area2">  <h2>Princess Noura University As Destination</h2>
     <h4> Number of commuters within walking distance of a metro station, per hour</h4></div>
-
-<!--   <div id = "radio2"> 
-   <form>
-    <label><input type="radio" name="mode" value="multiples" checked> Multiples</label>
-    <label><input type="radio" name="mode" value="stacked"> Stacked</label>
-  </form></div> -->
+</div>
+<div id = tablesum> 
+<h2>Summary of Metro Access Throughout in A Typical Day</h2>
+<h4> Percent of Total Commuters within Walking Distance of a Metro Station</h4>
+<br>
+<table id= summarychart>
+  <tr>
+    <th> </th>
+    <th>Within 400m of a metro stop</th>
+    <th>Within 400-800m of a metro stop</th>
+    <th>Not within walking distance</th> 
+  </tr>
+  <tr> 
+    <td>travelling from PNU</td>
+    <td>7.4% </td> 
+    <td>12.2% </td> 
+    <td>80.4% </td> 
+  </tr>
+  <tr>
+    <td>travelling to PNU </td>
+    <td>4.9% </td> 
+    <td>12.7% </td> 
+    <td>82.4% </td> 
+  </tr>
+</table>	
+</div>
 </div>
 
-</div>
 
 <script>
 var margin = {top: 0, right: 20, bottom: 0, left: 60},
@@ -265,7 +318,7 @@ var tooltip1 = d3.select("#area1")
           return tooltip1.style("visibility", "visible").text(d.counta + "persons");
         })
         .on("mousemove", function(d){
-          return tooltip1.style("top", (event.pageY-20)+"px").style("left",(event.pageX-200)+"px").text(d.counta + " persons ");
+          return tooltip1.style("top", (event.pageY-20)+"px").style("left",(event.pageX-100)+"px").text(d.counta + " persons ");
         })
         .on("mouseout", function(d){
           return tooltip1.style("visibility", "hidden");
@@ -413,7 +466,7 @@ var tooltip = d3.select("#area2")
           return tooltip.style("visibility", "visible").text(d.count + "persons");
         })
         .on("mousemove", function(d){
-          return tooltip.style("top", (event.pageY)+"px").style("left",(event.pageX-200)+"px").text(d.count + " persons ");
+          return tooltip.style("top", (event.pageY)+"px").style("left",(event.pageX-100)+"px").text(d.count + " persons ");
         })
         .on("mouseout", function(d){
           return tooltip.style("visibility", "hidden");

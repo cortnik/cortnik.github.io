@@ -52,6 +52,7 @@
     <script src="flow/geojsons/PNDedgeflow2122.geojson"></script>
     <script src="flow/geojsons/PNDedgeflow2223.geojson"></script>
     <script src="flow/geojsons/PNDedgeflow2324.geojson"></script>
+    <script src="hotspot_data/metro.geojson"></script>
     <style> 
         @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
 
@@ -261,7 +262,17 @@
     	.attr("cy", pnu[1])
     	.attr("r",4)
     	.style("fill", "#a11e1e");
-    
+        var metroLines = origin_map.append( "g" );
+        metroLines.selectAll( "path" )
+        .data(metro.features )
+        .enter()
+        .append( "path" )
+        .attr("fill", "none")
+        .attr( "stroke", "#bdbdbd" )
+        .attr("stroke-width", 1.5)
+        .attr( "d", geoPath )
+        .attr("class", "metro");
+
 
     // when the input range changes update the value 
     d3.select("#timeslide").on("input", function() {
@@ -358,7 +369,16 @@
     	.attr("cy", pnu[1])
     	.attr("r",4)
     	.style("fill", "#a11e1e");
-
+     var metroLines = destination_map.append( "g" );
+        metroLines.selectAll( "path" )
+        .data(metro.features )
+        .enter()
+        .append( "path" )
+        .attr("fill", "none")
+        .attr( "stroke", "#bdbdbd" )
+        .attr("stroke-width", 1.5)
+        .attr( "d", geoPath )
+        .attr("class", "metro");
     // TIMESLIDER
         function update_pnd(value) {
             document.getElementById("range").innerHTML=time[value];
