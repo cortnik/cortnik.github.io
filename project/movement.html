@@ -60,19 +60,19 @@
             position: absolute;
             top: 30px;
             font-family: 'Roboto Condensed', sans-serif;
-            background-color: #FFFAFA;
-            color: #708090;
+            /*background-color: #FFFAFA;
+            color: #708090;*/
         }
         h3 {
 /*          position: absolute;
             left: 20px;*/
             font-size: 1.3em;
             font-weight: 100;
-            color: #708090;
+            /*color: #708090;*/
         }
         h2 {
             font-size: 1em;
-            color: #708090;
+           /* color: #708090;*/
         }
         .hotspot {
             stroke: #ffffff;
@@ -116,7 +116,7 @@
             width:1200px;
             height:550px;
             margin-left: 60px;
-            margin-top:50px;
+            margin-top:30px;
         }
         #origin_map {
             width:550px;
@@ -145,19 +145,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                    <a class="navbar-brand topnav" href="http://cortnik.github.io/project">WOMEN ON THE MOVE</a>
+                     <a class="navbar-brand topnav" href="/project">WOMEN ON THE MOVE</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                     <li>
-                        <a href="project/movement.html">MOVEMENT</a>
+                    <li>
+                        <a href="/project/movement.html">MOVEMENT</a>
                     </li>
                     <li>
-                        <a href="project/access.html" target="blank">ACCESS</a>
+                        <a href="/project/access.html" target="blank">ACCESS</a>
                     </li>
                     <li>
-                        <a href="project/about_us.html" target="blank">ABOUT</a>
+                        <a href="/project/about_us.html" target="blank">ABOUT</a>
                     </li>
                 </ul>
             </div>
@@ -169,7 +169,7 @@
     <br>
     <br>
     <h1 align="center"><strong>WHERE DO UNIVERSITY WOMEN TRAVEL IN RIYADH?</strong></h1>
-    <br>
+    <br><h3> Move the slider to animate the paths of commuters during each hour of a typical day. Orange lines represent the shortest paths between the Princess Noura campus and the commuter origin/destination hotspots. The size of the blue hotspots is based on the number of commuters flowing through each day. </h3>
         </div>
     </div>
 
@@ -268,7 +268,7 @@
         .enter()
         .append( "path" )
         .attr("fill", "none")
-        .attr( "stroke", "#bdbdbd" )
+        .attr( "stroke", "#828282" )
         .attr("stroke-width", 1.5)
         .attr( "d", geoPath )
         .attr("class", "metro");
@@ -452,5 +452,10 @@
 	<li>A "shortest path" analysis was used to map out the approximate route that most commuters may choose. The thickness of the lines represents the corresponding number of estimated commuters travelling towards and from the University along those routes.</li>
 	</p>
 	</div>
+
+<div class="container">                                   
+                <a href="/project/access.html" align="center" class="btn btn-default btn-lg"> How will the new metro serve those places?</a> </p>
+
+  </div>
 </body>
 </html>

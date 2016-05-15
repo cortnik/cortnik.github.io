@@ -15,18 +15,20 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
-    <!-- Adding Leaflet linkstuff -->
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-
 	<!-- Data links -->
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
     <script src="//d3js.org/d3.v3.min.js"></script>
     
     <style>
+    body {
+      position: absolute;
+      top: 30px;
+    }
      .hotspothover {
             fill: #ffe28a; 
         }
+    }
 
     .hotspot {
             opacity: .7;
@@ -45,7 +47,7 @@
   width:1200px;
   height:900px;
   margin-left: 60px;
-  margin-top:20px;
+  margin-top:30px;
         }
 
 h2{
@@ -56,10 +58,6 @@ h2{
 h4{
     margin:0;
     padding:0;
-}
-
-text {
-  font: 10px sans-serif;
 }
 
 .axis path {
@@ -113,17 +111,14 @@ table{
 
 #tablesum {
   width:1200px;
-  height:300px;
+  height:250px;
   margin-left:60px;
   margin-top:20px;
 }
-  
-    /* width:70%; */
-    /*margin-left:15%; */
-    /*margin-right:15%; */
-    /*margin-bottom:20px;*/
-    /*    }*/
 
+ #maptext{
+     margin-left:60px;
+   }
 
 </style>
     
@@ -142,19 +137,19 @@ table{
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                  <a class="navbar-brand topnav" href="http://cortnik.github.io/project">WOMEN ON THE MOVE</a>
+                    <a class="navbar-brand topnav" href="/project">WOMEN ON THE MOVE</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                     <li>
-                        <a href="project/movement.html">MOVEMENT</a>
+                    <li>
+                        <a href="/project/movement.html">MOVEMENT</a>
                     </li>
                     <li>
-                        <a href="project/access.html" target="blank">ACCESS</a>
+                        <a href="/project/access.html" target="blank">ACCESS</a>
                     </li>
                     <li>
-                        <a href="project/about_us.html" target="blank">ABOUT</a>
+                        <a href="/project/about_us.html" target="blank">ABOUT</a>
                     </li>
                 </ul>
             </div>
@@ -169,16 +164,6 @@ table{
     <h1 align="center"><strong>HOW MANY UNIVERSITY WOMEN DOES THE METRO SERVE?</strong></h1>
     <br>
         </div>
-    
-    <div class="container">
-    <iframe width="100%" height="620" frameborder="0" src="https://cortni.cartodb.com/viz/67aa3566-19f6-11e6-8dd1-0e3ff518bd15/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-    </div>
-    <div class="container">
-    <p>This map allows for a more detailed look at the locations of the hotspots, as well as a better understanding of the concentrations of activity in relation to the proposed metro stops.<br>
-	Specifically, there is a 400m and 800m buffer around each stop and the flow assigned to the buffer shows how many commuters fall within these ‘walkable’ distances from the metro.<br>
-	One can interact with this map to understand which metro stations are likely to be most popular with the women university students, and also provide a visual sense of which are the most populated hotspots that are not served by the metro. </p>
-	</div>
-
     <div class="container">
     <div id="wrap">
      <h2>Princess Noura University As Origin</h2>
@@ -220,8 +205,21 @@ table{
   </tr>
 </table>	
 </div>
-</div>
-
+    <div id="maptext">
+    <h2 >Mapping Metro Access</h2>
+        <p><h4>This interactive map of Riyadh contains three data layers that aggregate flow (number of women going to/from Princess Noura) for a typical day:
+        <br>
+        <ul>
+        <li>400m Station Buffers: Hover over to see the flow at that station</li>
+        <li>800m Station Buffers: Hover over to see the flow at that station</li>
+        <li>Flow Grid: Click on the hexagons to see the flow in that area</li>
+        </ul> 
+        Toggle layers on and off using the top right "Visible layers" button. </p>
+        </h4>
+        </p>
+        </div>
+    <iframe width="100%" height="620" frameborder="0" src="https://cortni.cartodb.com/viz/67aa3566-19f6-11e6-8dd1-0e3ff518bd15/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+    </div>
 
 <script>
 var margin = {top: 0, right: 20, bottom: 0, left: 60},
@@ -473,14 +471,9 @@ var tooltip = d3.select("#area2")
 
   d3.selectAll("input").on("change", change);
 
-
-
-
-
-
 });
 
 
-</script>
+</script>    
 </body>
 </html>

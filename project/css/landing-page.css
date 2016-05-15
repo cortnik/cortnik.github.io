@@ -173,7 +173,7 @@ p.copyright {
     margin: 15px 0 0;
 }
 .btn {
-    padding: 10px;
+    padding: 20px;
     border-radius: 1px white;
     text-transform: uppercase;
     font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;;
@@ -193,6 +193,6 @@ p.copyright {
 .btn-default:focus {
     border: 1px solid #4099ff;
     outline: 0;
-    color: #4099ff;
+    color: #ffb72d;
     background-color: transparent;
 }
