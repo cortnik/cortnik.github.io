@@ -156,7 +156,8 @@ hr.small {
     width: 100%;
     height: 100%;
     background: url(../img/Haiti.jpg) no-repeat center center scroll;
-    opacity: .5;
+    background-color: hsla(0,0%,100%,0.70);
+    background-blend-mode: overlay;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
